@@ -36,7 +36,7 @@ exports.update = function (req, res) {
 }
 
 /** removeCompany function to get Company by id. */
-exports.remove = function (req, res) {
+exports.delete = function (req, res) {
     Company.removeById({_id: req.params.id}, function(err, result) {
         if (!err) {
             return res.json(result);
