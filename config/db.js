@@ -1,10 +1,7 @@
 var Mongoose = require('mongoose');
+Mongoose.Promise = require('bluebird');
 
-Mongoose.connect('mongodb://localhost/nodeappdb'); 
-var db = Mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error'));
-db.once('open', function callback() {
-  console.log("Connection with database succeeded.");
-});
+var db = Mongoose.connect('mongodb://localhost/nodeappdb', { useMongoClient: true }).then(() => console.log('connection with database succeeded'))
+    .catch(err => console.error(err));
 
 exports.db = db;
